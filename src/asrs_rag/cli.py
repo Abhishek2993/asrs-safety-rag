@@ -228,6 +228,9 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
             predictions_path=out_dir / "llm_predictions.jsonl",
             baselines=baselines,
         )
+    elif args.rescore:  # faithfulness, recomputed from stored LLM outputs
+        stored = json.loads((out_dir / "faithfulness.json").read_text())
+        res = ev.rescore_faithfulness(idx, stored)
     else:  # faithfulness
         llm = _llm(args)
         res = ev.faithfulness_eval(idx, llm)
@@ -237,7 +240,19 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
     summary = {
         k: v
         for k, v in res.items()
-        if k in ("bm25", "dense", "hybrid", "chance", "citation_precision", "statement_coverage")
+        if k
+        in (
+            "bm25",
+            "dense",
+            "hybrid",
+            "chance",
+            "citation_precision",
+            "statement_coverage",
+            "mean_citations_per_statement",
+            "broad_statement_rate",
+            "mean_lexical_support",
+            "low_support_rate",
+        )
     }
     for key in (
         "tfidf_lr",
@@ -329,6 +344,11 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--n", type=int, default=300, help="queries (retrieval) / reports (llm)")
     p.add_argument("--queries", default=str(config.EVAL_DIR / "queries.jsonl"))
     p.add_argument("--out", default=str(config.RESULTS_DIR))
+    p.add_argument(
+        "--rescore",
+        action="store_true",
+        help="faithfulness: recompute metrics from stored summaries without calling the LLM",
+    )
     p.set_defaults(func=cmd_evaluate)
     return parser
 

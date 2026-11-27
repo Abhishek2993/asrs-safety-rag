@@ -24,6 +24,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from asrs_rag.cite import check_citations, enforce_citations
 from asrs_rag.classify import LLMClassifier, NeighbourVoteClassifier, SupervisedClassifier
 from asrs_rag.config import RANDOM_SEED
 from asrs_rag.index import ReportIndex
@@ -36,7 +37,7 @@ from asrs_rag.metrics import (
     reciprocal_rank,
 )
 from asrs_rag.retrieve import Filters, HybridRetriever
-from asrs_rag.summarise import summarise
+from asrs_rag.summarise import select_evidence, summarise
 
 log = logging.getLogger(__name__)
 
@@ -116,7 +117,6 @@ def retrieval_proxy_eval(
             per_query.append(q)
         results[mode] = _aggregate(per_query, ks)
         log.info("proxy %s: %s", mode, results[mode])
-    # per primary problem (hybrid, P@5) to expose class imbalance effects
     return results
 
 
@@ -301,55 +301,108 @@ SUMMARY_FILTERS: list[dict] = [
 ]
 
 
+#: A statement citing more reports than this is counted as "broad" (citation dumping).
+BROAD_CITATIONS = 5
+#: Statements whose lexical support is below this are flagged for review.
+LOW_SUPPORT = 0.2
+
+
+def _score_summary(index: ReportIndex, spec: dict, raw_text: str, n_evidence: int) -> dict:
+    """Citation and support statistics for one generated summary text.
+
+    The evidence set is recomputed deterministically from the filters, so
+    stored LLM outputs can be re-scored without calling the LLM again.
+    """
+    evidence = select_evidence(index, Filters(**spec), n_evidence)
+    allowed = {e["acn"] for e in evidence}
+    sources = {e["acn"]: f"{e['synopsis']} {e['narrative']}" for e in evidence}
+    check = check_citations(raw_text, allowed, sources).to_dict()
+    enforced, removed = enforce_citations(raw_text, allowed)
+    return {
+        "filters": spec,
+        **{
+            k: check[k]
+            for k in (
+                "n_statements",
+                "n_citations",
+                "n_valid_citations",
+                "citation_precision",
+                "statement_coverage",
+                "mean_support",
+                "passed",
+                "invalid_citations",
+                "statements",
+            )
+        },
+        "raw_text": raw_text,
+        "enforced_text": enforced,
+        "removed_statements": removed,
+    }
+
+
+def _aggregate_faithfulness(per_summary: list[dict]) -> dict:
+    statements = [st for p in per_summary for st in p["statements"]]
+    tot_cit = sum(p["n_citations"] for p in per_summary)
+    tot_valid = sum(p["n_valid_citations"] for p in per_summary)
+    supports = [st["support"] for st in statements if st["support"] is not None]
+    n = len(statements)
+    return {
+        "n_summaries": len(per_summary),
+        "n_statements": n,
+        "citation_precision": tot_valid / tot_cit if tot_cit else 0.0,
+        "statement_coverage": sum(st["n_valid"] > 0 for st in statements) / n if n else 0.0,
+        "summaries_fully_grounded": sum(p["passed"] for p in per_summary),
+        "mean_citations_per_statement": tot_cit / n if n else 0.0,
+        "broad_statement_rate": (
+            sum(st["n_citations"] > BROAD_CITATIONS for st in statements) / n if n else 0.0
+        ),
+        "mean_lexical_support": float(np.mean(supports)) if supports else None,
+        "low_support_rate": (
+            sum(sp < LOW_SUPPORT for sp in supports) / len(supports) if supports else None
+        ),
+        "thresholds": {"broad_citations": BROAD_CITATIONS, "low_support": LOW_SUPPORT},
+        "after_enforcement": "100% of displayed statements carry >=1 valid citation "
+        "(ungrounded statements are removed by cite.enforce_citations)",
+    }
+
+
 def faithfulness_eval(
     index: ReportIndex,
     llm,
     filter_specs: list[dict] | None = None,
     n_evidence: int = 10,
 ) -> dict:
-    """Citation precision / statement coverage of summaries before enforcement."""
+    """Citation precision, coverage and support of summaries *before* enforcement."""
     filter_specs = filter_specs or SUMMARY_FILTERS
-    per_summary = []
+    per_summary, generator = [], None
     for spec in filter_specs:
         s = summarise(index, Filters(**spec), llm=llm, n_evidence=n_evidence)
-        c = s.citation_check
+        generator = s.generator
         per_summary.append(
-            {
-                "filters": spec,
-                "n_reports": s.n_reports,
-                "generator": s.generator,
-                **{
-                    k: c[k]
-                    for k in (
-                        "n_statements",
-                        "n_citations",
-                        "n_valid_citations",
-                        "citation_precision",
-                        "statement_coverage",
-                        "mean_support",
-                        "passed",
-                        "invalid_citations",
-                    )
-                },
-                "raw_text": s.raw_text,
-                "enforced_text": s.text,
-                "removed_statements": s.removed_statements,
-            }
+            {**_score_summary(index, spec, s.raw_text, n_evidence), "n_reports": s.n_reports}
         )
-    tot_cit = sum(p["n_citations"] for p in per_summary)
-    tot_valid = sum(p["n_valid_citations"] for p in per_summary)
-    tot_st = sum(p["n_statements"] for p in per_summary)
-    cited_st = sum(round(p["statement_coverage"] * p["n_statements"]) for p in per_summary)
-    supports = [p["mean_support"] for p in per_summary if p["mean_support"] is not None]
     return {
-        "n_summaries": len(per_summary),
-        "generator": per_summary[0]["generator"] if per_summary else None,
-        "citation_precision": tot_valid / tot_cit if tot_cit else 0.0,
-        "statement_coverage": cited_st / tot_st if tot_st else 0.0,
-        "summaries_fully_grounded": sum(p["passed"] for p in per_summary),
-        "mean_lexical_support": float(np.mean(supports)) if supports else None,
-        "after_enforcement": "100% of displayed statements carry >=1 valid citation "
-        "(ungrounded statements are removed by cite.enforce_citations)",
+        "generator": generator,
+        "n_evidence": n_evidence,
+        **_aggregate_faithfulness(per_summary),
+        "per_summary": per_summary,
+    }
+
+
+def rescore_faithfulness(index: ReportIndex, results: dict) -> dict:
+    """Recompute faithfulness metrics from stored raw summaries (no LLM calls)."""
+    n_evidence = results.get("n_evidence", 10)
+    per_summary = [
+        {
+            **_score_summary(index, p["filters"], p["raw_text"], n_evidence),
+            "n_reports": p.get("n_reports"),
+        }
+        for p in results["per_summary"]
+    ]
+    return {
+        "generator": results.get("generator"),
+        "n_evidence": n_evidence,
+        **_aggregate_faithfulness(per_summary),
         "per_summary": per_summary,
     }
 

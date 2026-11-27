@@ -65,3 +65,22 @@ def test_faithfulness_eval_counts_invalid_citations(toy_index):
 def test_faithfulness_eval_template_is_fully_grounded(toy_index):
     res = ev.faithfulness_eval(toy_index, None, [{"phases": ["approach"]}])
     assert res["citation_precision"] == 1.0 and res["summaries_fully_grounded"] == 1
+
+
+def test_faithfulness_rescore_reproduces_and_flags_broad_statements(toy_index):
+    res = ev.faithfulness_eval(toy_index, EchoLLM(), [{"phases": ["approach"]}])
+    again = ev.rescore_faithfulness(toy_index, res)
+    for key in ("citation_precision", "statement_coverage", "mean_citations_per_statement"):
+        assert again[key] == res[key]
+    stored = {
+        "per_summary": [
+            {
+                "filters": {},
+                "raw_text": "- Everything [ACN "
+                + ", ".join(f"200000{i}" for i in range(1, 7))
+                + "]",
+            }
+        ]
+    }
+    broad = ev.rescore_faithfulness(toy_index, stored)
+    assert broad["broad_statement_rate"] == 1.0 and broad["citation_precision"] == 1.0
