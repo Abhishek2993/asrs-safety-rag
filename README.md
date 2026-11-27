@@ -42,7 +42,7 @@ Everything runs locally on a CPU with no API key; an LLM is optional.
 | Classification, held-out test set | TF-IDF + logistic regression **micro-F1 = 0.69**, macro-F1 = 0.62 (1,814 reports) |
 | LLM (local, CPU) | Qwen2.5-1.5B-Instruct micro-F1 0.40 zero-shot -> **0.52 few-shot with retrieved examples** (supervised: 0.69 on the same 150 reports) |
 | Citation faithfulness | 100% of LLM citations valid and 100% of statements cited (10 summaries); 28% of statements flagged as weakly supported, see [5.4](#54-summary-faithfulness) |
-| Tests | 108 pytest tests, no model download needed; ruff + pytest in GitHub Actions |
+| Tests | 109 pytest tests, no model download needed; ruff + pytest in GitHub Actions |
 
 The app's second page shows the trend view for a filter (counts per year, factor shares,
 cited findings and the citation-check result).
