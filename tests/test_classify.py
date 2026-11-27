@@ -98,6 +98,10 @@ def test_neighbour_vote_classifier(toy_index):
         ('{"labels": ["weather", "fatigue"]}', ["fatigue", "weather"]),
         ('Sure! {"labels": ["Weather", "made_up"]}', ["weather"]),
         ("labels: procedure, human_factors", ["human_factors", "procedure"]),
+        (
+            '{"labels": ["organizational", "Communication Breakdown"]}',
+            ["communication", "organisational"],
+        ),
         ("{broken json", []),
         ("", []),
     ],

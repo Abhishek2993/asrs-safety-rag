@@ -313,8 +313,28 @@ def build_classification_prompt(
     return "\n".join(parts)
 
 
+#: Spelling/wording variants LLMs produce for label names.
+LABEL_ALIASES = {
+    "organizational": "organisational",
+    "organization": "organisational",
+    "human_factor": "human_factors",
+    "communications": "communication",
+    "communication_breakdown": "communication",
+    "atc": "atc_airspace",
+    "airspace": "atc_airspace",
+    "equipment": "aircraft_equipment",
+    "aircraft": "aircraft_equipment",
+    "airport": "airport_environment",
+    "environment": "airport_environment",
+}
+
+
 def parse_labels(response: str) -> list[str]:
-    """Extract valid label names from an LLM response (JSON first, then a lenient scan)."""
+    """Extract valid label names from an LLM response (JSON first, then a lenient scan).
+
+    Known variants (``organizational``, ``communication_breakdown`` ...) are
+    mapped through :data:`LABEL_ALIASES`; anything else is discarded.
+    """
     match = re.search(r"\{.*\}", response or "", flags=re.S)
     candidates: list[str] = []
     if match:
@@ -326,6 +346,7 @@ def parse_labels(response: str) -> list[str]:
             candidates = []
     if not candidates:
         candidates = re.findall(r"[a-z_]+", (response or "").lower())
+    candidates = [LABEL_ALIASES.get(c.replace(" ", "_"), c.replace(" ", "_")) for c in candidates]
     seen = [c for c in candidates if c in LABELS]
     return [lab for lab in LABELS if lab in seen]
 
