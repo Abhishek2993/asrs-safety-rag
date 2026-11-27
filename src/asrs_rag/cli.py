@@ -256,23 +256,34 @@ def cmd_evaluate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _add_common_args(p: argparse.ArgumentParser, top_level: bool = False) -> None:
+    """Options accepted both before and after the sub-command.
+
+    Sub-command copies use ``SUPPRESS`` so they only override the top-level
+    value when actually given.
+    """
+    d = (lambda v: v) if top_level else (lambda v: argparse.SUPPRESS)
+    p.add_argument("-v", "--verbose", action="store_true", default=d(False))
+    p.add_argument("--index-dir", type=Path, default=d(config.INDEX_DIR))
+    p.add_argument(
+        "--llm",
+        default=d(None),
+        help="LLM backend: auto (default), ollama, transformers, openai, anthropic, none",
+    )
+    p.add_argument("--llm-model", default=d(None), help="override the backend's model")
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Create the argument parser."""
     parser = argparse.ArgumentParser(
         prog="asrs_rag", description="Retrieval-augmented analysis of NASA ASRS reports."
     )
     parser.add_argument("--version", action="version", version=__version__)
-    parser.add_argument("-v", "--verbose", action="store_true")
-    parser.add_argument("--index-dir", type=Path, default=config.INDEX_DIR)
-    parser.add_argument(
-        "--llm",
-        default=None,
-        help="LLM backend: auto (default), ollama, transformers, openai, anthropic, none",
-    )
-    parser.add_argument("--llm-model", default=None, help="override the backend's model")
+    _add_common_args(parser, top_level=True)
     sub = parser.add_subparsers(dest="command")
 
     p = sub.add_parser("index", help="build the hybrid index")
+    _add_common_args(p)
     p.add_argument("--data", nargs="+", help="CSV files/dirs (default: data/raw or sample)")
     p.add_argument(
         "--embedder",
@@ -284,6 +295,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_index)
 
     p = sub.add_parser("query", help="find similar past reports")
+    _add_common_args(p)
     p.add_argument("narrative", help="incident narrative ('-' reads stdin)")
     p.add_argument("-k", type=int, default=5)
     p.add_argument("--mode", choices=["hybrid", "dense", "bm25"], default="hybrid")
@@ -292,14 +304,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_query)
 
     p = sub.add_parser("train", help="train the supervised classifier on indexed reports")
+    _add_common_args(p)
     p.add_argument("--features", choices=["tfidf", "embedding"], default="tfidf")
     p.set_defaults(func=cmd_train)
 
     p = sub.add_parser("classify", help="predict contributing factors for a narrative")
+    _add_common_args(p)
     p.add_argument("narrative", help="incident narrative ('-' reads stdin)")
     p.set_defaults(func=cmd_classify)
 
     p = sub.add_parser("summarise", aliases=["summarize"], help="cited trend summary")
+    _add_common_args(p)
     _add_filter_args(p)
     p.add_argument("--query", help="focus the evidence on a theme (hybrid retrieval)")
     p.add_argument("--evidence", type=int, default=12, help="reports the summary may cite")
@@ -307,6 +322,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_summarise)
 
     p = sub.add_parser("evaluate", help="run an evaluation (writes results/*.json)")
+    _add_common_args(p)
     p.add_argument(
         "what", choices=["retrieval", "labelled", "classification", "llm", "faithfulness"]
     )
