@@ -120,3 +120,11 @@ def test_missing_acn_column_raises(tmp_path):
 )
 def test_split_multi(value, expected):
     assert split_multi(value) == expected
+
+
+def test_committed_sample_loads():
+    sample = Path(__file__).resolve().parents[1] / "data" / "sample" / "asrs_sample.csv"
+    df = load_reports(sample)
+    assert len(df) == 200 and df["acn"].is_unique
+    assert (df["narrative"].str.len() > 0).all()
+    assert df["year"].between(2012, 2022).all()
