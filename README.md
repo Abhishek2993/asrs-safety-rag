@@ -40,7 +40,7 @@ Everything runs locally on a CPU with no API key; an LLM is optional.
 | Vector index | FAISS exact inner product + sparse BM25, fused with Reciprocal Rank Fusion |
 | Retrieval, hand-labelled queries | hybrid **P@3 = 0.92**, **R@10 = 0.83**, MRR = 1.00 (20 queries) |
 | Classification, held-out test set | TF-IDF + logistic regression **micro-F1 = 0.69**, macro-F1 = 0.62 (1,814 reports) |
-| LLM (local, CPU) | Qwen2.5-1.5B-Instruct: zero-shot vs few-shot RAG compared, see [5.3](#53-llm-classification-zero-shot-vs-few-shot-rag) |
+| LLM (local, CPU) | Qwen2.5-1.5B-Instruct micro-F1 0.40 zero-shot -> **0.52 few-shot with retrieved examples** (supervised: 0.69 on the same 150 reports) |
 | Citation faithfulness | see [5.4](#54-summary-faithfulness); ungrounded statements are removed before display |
 | Tests | 105 pytest tests, no model download needed; ruff + pytest in GitHub Actions |
 
@@ -205,7 +205,48 @@ Observations:
 
 ### 5.3 LLM classification: zero-shot vs few-shot RAG
 
-*Results pending: the evaluation run (`python -m asrs_rag --llm transformers evaluate llm --n 150`) is in progress and its numbers will be added here.*
+A seeded sample of **150 reports from the same held-out test split**, so all rows below are
+scored on identical data. LLM: **Qwen2.5-1.5B-Instruct** (local, CPU, temperature 0, in-process
+`transformers` backend). Few-shot = the 4 most similar *training* reports (hybrid retrieval)
+with their coded labels in the prompt.
+
+| Model (same 150 test reports) | micro-P | micro-R | **micro-F1** | **macro-F1** | exact match | s / report |
+|---|---|---|---|---|---|---|
+| LLM zero-shot | 0.33 | 0.51 | 0.40 | 0.24 | 0.01 | 10.3 |
+| LLM few-shot (RAG, 4 examples) | 0.43 | 0.66 | **0.52** | **0.45** | 0.02 | 10.7 |
+| TF-IDF + logistic regression | 0.60 | 0.82 | **0.69** | **0.57** | 0.25 | < 0.01 |
+| MiniLM embeddings + logistic regression | 0.59 | 0.78 | 0.67 | 0.54 | 0.25 | < 0.01 |
+
+Per-label F1 on this sample (support in brackets):
+
+| Label | Zero-shot | Few-shot (RAG) | TF-IDF + LR |
+|---|---|---|---|
+| human_factors (90) | 0.73 | 0.77 | 0.84 |
+| aircraft_equipment (57) | 0.13 | 0.61 | 0.79 |
+| procedure (52) | 0.15 | 0.42 | 0.67 |
+| communication (44) | 0.48 | 0.53 | 0.64 |
+| airport_environment (23) | 0.00 | 0.51 | 0.51 |
+| atc_airspace (21) | 0.26 | 0.26 | 0.57 |
+| weather (20) | 0.00 | 0.54 | 0.57 |
+| organisational (20) | 0.24 | 0.27 | 0.56 |
+| fatigue (3) | 0.19 | 0.14 | 0.00 |
+
+Findings:
+* **Retrieval helps the LLM a lot:** few-shot examples raise micro-F1 from 0.40 to 0.52 and
+  macro-F1 from 0.24 to 0.45. The biggest gains are on labels whose ASRS meaning is a coding
+  convention the model cannot guess from the label name alone (weather 0.00 -> 0.54,
+  airport_environment 0.00 -> 0.51, aircraft_equipment 0.13 -> 0.61).
+* **The 1.5B local model does not beat the supervised baseline.** It over-predicts
+  (precision 0.43 vs 0.60), especially *atc_airspace* and *organisational*. This supports
+  keeping the supervised model as the default and the LLM as an optional second opinion
+  (hazard H1/H8). A larger model can be evaluated with the same command
+  (`--llm ollama --llm-model <model>` or an API backend).
+* Fatigue has only 3 positives in this sample, so its per-label scores here are not meaningful;
+  use the full test split in 5.2 for fatigue.
+* Raw LLM outputs and the examples used for every report are saved in
+  `results/llm_predictions.jsonl` for audit.
+
+![LLM vs supervised](docs/figures/llm_vs_supervised.png)
 
 ### 5.4 Summary faithfulness
 
