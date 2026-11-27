@@ -214,7 +214,15 @@ For each generated summary: **citation precision** = share of cited ACNs that ar
 in the evidence set given to the LLM; **statement coverage** = share of statements
 with at least one valid citation. A lexical **support score** (share of a
 statement's content words found in the cited reports) flags claims that cite a
-real report but may not be supported by it.
+real report but may not be supported by it, and the **broad-statement rate** (statements
+citing more than 5 reports) measures "citation dumping".
+
+The run in the README is a good interview story: the 1.5B model scored 100% on
+citation precision and coverage, yet a spot-check found a detail ("runway incursions")
+that none of the cited reports contained, and 28% of statements had low lexical
+support. Lesson: checking *that* claims are cited is necessary but not sufficient;
+you also need to measure *whether* the citations support them, and keep a human in
+the loop.
 
 ## 9. Summaries and the citation check
 
@@ -268,7 +276,12 @@ away.
   its limits.
 * **"What if the LLM invents a cause?"** Statements without a valid citation are
   removed; numbers are never generated; a lexical support score flags weakly
-  supported statements; and the supervised baseline works without any LLM.
+  supported statements; and the supervised baseline works without any LLM. Be
+  honest that this does not catch a wrong detail attached to a real citation - the
+  evaluation found exactly that, which is why outputs need analyst review.
+* **"Did RAG help the LLM classifier?"** Yes: few-shot examples retrieved from the
+  training set raised micro-F1 from 0.40 to 0.52 for the 1.5B model, but the TF-IDF
+  baseline (0.69 on the same reports) is still better - so it stays the default.
 * **"Why is fatigue F1 low?"** ~3% prevalence and fatigue is often implicit ("long
   day", "red-eye"); see the per-label results and the class-imbalance hazard.
 * **"Could this be used to blame a pilot?"** It must not: ASRS is voluntary and
