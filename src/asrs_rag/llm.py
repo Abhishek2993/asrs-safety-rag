@@ -205,7 +205,8 @@ class TransformersLLM:
         if self.threads:
             torch.set_num_threads(self.threads)
         self._tok = AutoTokenizer.from_pretrained(self.model_id)
-        self._model = AutoModelForCausalLM.from_pretrained(self.model_id, dtype=torch.bfloat16)
+        # float32: bfloat16 matmuls are emulated (slow) on most CPUs.
+        self._model = AutoModelForCausalLM.from_pretrained(self.model_id, dtype=torch.float32)
         self._model.eval()
 
     def generate(
