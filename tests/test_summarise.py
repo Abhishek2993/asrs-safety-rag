@@ -45,7 +45,7 @@ def test_llm_summary_hallucinated_citation_is_caught_and_removed(toy_index):
     assert not check["passed"]
     assert check["invalid_citations"] == ["1234567"]
     assert check["citation_precision"] == round(2 / 3, 4)
-    assert s.text == "- Wind shear and icing affected approaches [ACN 2000001, ACN 2000002]"
+    assert s.text == "- Wind shear and icing affected approaches [ACN 2000001, 2000002]"
     assert len(s.removed_statements) == 2
     # The prompt lists only the evidence reports and forbids numbers.
     assert "[ACN 2000001]" in llm.prompts[0] and "[ACN 2000003]" not in llm.prompts[0]

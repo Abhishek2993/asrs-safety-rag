@@ -82,3 +82,21 @@ def test_check_with_sources_reports_support():
 
 def test_empty_text_fails_check():
     assert not check_citations("", ALLOWED).passed
+
+
+def test_enforce_keeps_grounded_statements_verbatim():
+    text = (
+        "- For instance, [ACN 1111111] and [ACN 2222222] show icing; see also [ACN 9999999].\n"
+        "- Inline cite ACN 3333333 stays put."
+    )
+    clean, removed = enforce_citations(text, ALLOWED)
+    assert removed == []
+    assert clean == (
+        "- For instance, [ACN 1111111] and [ACN 2222222] show icing; see also.\n"
+        "- Inline cite ACN 3333333 stays put."
+    )
+
+
+def test_report_lists_per_statement_details():
+    rep = check_citations("- A [ACN 1111111, 2222222]\n- B", ALLOWED).to_dict()
+    assert [s["n_citations"] for s in rep["statements"]] == [2, 0]

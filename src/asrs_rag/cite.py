@@ -124,6 +124,15 @@ class CitationReport:
             "passed": self.passed,
             "invalid_citations": sorted({a for s in self.statements for a in s.invalid}),
             "uncited_statements": [s.text for s in self.statements if not s.citations],
+            "statements": [
+                {
+                    "text": s.text,
+                    "n_citations": len(s.citations),
+                    "n_valid": len(s.valid),
+                    "support": None if s.support is None else round(s.support, 4),
+                }
+                for s in self.statements
+            ],
         }
 
 
@@ -172,16 +181,30 @@ def check_citations(
 def enforce_citations(text: str, allowed: Iterable[str]) -> tuple[str, list[str]]:
     """Keep only statements with a valid citation; remove invalid ACN references.
 
-    Returns ``(clean_text, removed_statements)``. The clean text is a bullet list.
+    Grounded statements are kept verbatim (citations stay where the author put
+    them). In a statement that mixes valid and invalid citations, only the
+    invalid ACNs are deleted from its citation blocks. Statements with no valid
+    citation are dropped and returned in ``removed_statements``.
+
+    Returns ``(clean_text, removed_statements)``; the clean text is a bullet list.
     """
     allowed = set(allowed)
+
+    def _filter_block(m: re.Match[str]) -> str:
+        acns = _NUM_RE.findall(m.group(0))
+        valid = [a for a in acns if a in allowed]
+        if len(valid) == len(acns):
+            return m.group(0)
+        if not valid:
+            return ""
+        return "[ACN " + ", ".join(valid) + "]"
+
     kept, removed = [], []
     for st in split_statements(text):
-        valid = [a for a in extract_acns(st) if a in allowed]
-        if not valid:
+        if not any(a in allowed for a in extract_acns(st)):
             removed.append(st)
             continue
-        body = _ACN_BLOCK_RE.sub("", st).strip().rstrip(",;")
-        cites = ", ".join(f"ACN {a}" for a in valid)
-        kept.append(f"- {body} [{cites}]")
+        cleaned = _ACN_BLOCK_RE.sub(_filter_block, st)
+        cleaned = re.sub(r"\s+([,.;])", r"\1", re.sub(r"\s{2,}", " ", cleaned)).strip()
+        kept.append(f"- {cleaned}")
     return "\n".join(kept), removed
