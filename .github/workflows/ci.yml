@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install CPU-only PyTorch (avoids multi-GB CUDA wheels)
+        run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Install package
+        run: pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check . && ruff format --check .
+
+      - name: Test
+        # Tests use a deterministic hashing embedder and a fake LLM,
+        # so no model weights are downloaded in CI.
+        env:
+          ASRS_RAG_LLM: none
+        run: pytest

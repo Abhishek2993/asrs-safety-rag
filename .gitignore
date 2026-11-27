@@ -2,6 +2,20 @@ __pycache__/
 *.pyc
 .venv/
 .env
-data/
-*.parquet
 .ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Data: raw ASRS exports and generated artefacts stay local.
+# Only the small committed sample and the evaluation set are tracked.
+data/*
+!data/sample/
+!data/eval/
+data/raw/*
+!data/raw/README.md
+data/index/
+data/models/
+*.parquet
