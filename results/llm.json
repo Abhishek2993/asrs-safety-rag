@@ -1,0 +1,653 @@
+{
+  "n": 150,
+  "llm": "transformers:Qwen/Qwen2.5-1.5B-Instruct",
+  "n_examples": 4,
+  "zero_shot": {
+    "n_samples": 150,
+    "micro": {
+      "precision": 0.328125,
+      "recall": 0.509090909090909,
+      "f1": 0.3990498812351544
+    },
+    "macro": {
+      "precision": 0.2862359583999444,
+      "recall": 0.48855108504231315,
+      "f1": 0.2434515978250889
+    },
+    "subset_accuracy": 0.013333333333333334,
+    "hamming_loss": 0.3748148148148148,
+    "per_label": {
+      "human_factors": {
+        "precision": 0.589041095890411,
+        "recall": 0.9555555555555556,
+        "f1": 0.728813559322034,
+        "support": 90,
+        "predicted": 146,
+        "tp": 86,
+        "fp": 60,
+        "fn": 4,
+        "tn": 0
+      },
+      "fatigue": {
+        "precision": 0.10344827586206896,
+        "recall": 1.0,
+        "f1": 0.1875,
+        "support": 3,
+        "predicted": 29,
+        "tp": 3,
+        "fp": 26,
+        "fn": 0,
+        "tn": 121
+      },
+      "communication": {
+        "precision": 0.31851851851851853,
+        "recall": 0.9772727272727273,
+        "f1": 0.48044692737430167,
+        "support": 44,
+        "predicted": 135,
+        "tp": 43,
+        "fp": 92,
+        "fn": 1,
+        "tn": 14
+      },
+      "weather": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 20,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 20,
+        "tn": 130
+      },
+      "aircraft_equipment": {
+        "precision": 1.0,
+        "recall": 0.07017543859649122,
+        "f1": 0.13114754098360656,
+        "support": 57,
+        "predicted": 4,
+        "tp": 4,
+        "fp": 0,
+        "fn": 53,
+        "tn": 93
+      },
+      "procedure": {
+        "precision": 0.23076923076923078,
+        "recall": 0.11538461538461539,
+        "f1": 0.15384615384615388,
+        "support": 52,
+        "predicted": 26,
+        "tp": 6,
+        "fp": 20,
+        "fn": 46,
+        "tn": 78
+      },
+      "atc_airspace": {
+        "precision": 0.19148936170212766,
+        "recall": 0.42857142857142855,
+        "f1": 0.2647058823529412,
+        "support": 21,
+        "predicted": 47,
+        "tp": 9,
+        "fp": 38,
+        "fn": 12,
+        "tn": 91
+      },
+      "organisational": {
+        "precision": 0.14285714285714285,
+        "recall": 0.85,
+        "f1": 0.24460431654676254,
+        "support": 20,
+        "predicted": 119,
+        "tp": 17,
+        "fp": 102,
+        "fn": 3,
+        "tn": 28
+      },
+      "airport_environment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 23,
+        "predicted": 6,
+        "tp": 0,
+        "fp": 6,
+        "fn": 23,
+        "tn": 121
+      }
+    },
+    "confusions": [
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "human_factors",
+        "count": 41
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "organisational",
+        "count": 39
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "communication",
+        "count": 38
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "organisational",
+        "count": 32
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "communication",
+        "count": 21
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "organisational",
+        "count": 17
+      },
+      {
+        "missed": "airport_environment",
+        "predicted_instead": "communication",
+        "count": 15
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "communication",
+        "count": 14
+      }
+    ],
+    "seconds_per_report": 10.32,
+    "empty_predictions": 1
+  },
+  "few_shot": {
+    "n_samples": 150,
+    "micro": {
+      "precision": 0.434,
+      "recall": 0.6575757575757576,
+      "f1": 0.5228915662650603
+    },
+    "macro": {
+      "precision": 0.4479365590231603,
+      "recall": 0.6059572924180094,
+      "f1": 0.450874922205279
+    },
+    "subset_accuracy": 0.02,
+    "hamming_loss": 0.29333333333333333,
+    "per_label": {
+      "human_factors": {
+        "precision": 0.6285714285714286,
+        "recall": 0.9777777777777777,
+        "f1": 0.7652173913043477,
+        "support": 90,
+        "predicted": 140,
+        "tp": 88,
+        "fp": 52,
+        "fn": 2,
+        "tn": 8
+      },
+      "fatigue": {
+        "precision": 0.08,
+        "recall": 0.6666666666666666,
+        "f1": 0.14285714285714285,
+        "support": 3,
+        "predicted": 25,
+        "tp": 2,
+        "fp": 23,
+        "fn": 1,
+        "tn": 124
+      },
+      "communication": {
+        "precision": 0.3838383838383838,
+        "recall": 0.8636363636363636,
+        "f1": 0.5314685314685315,
+        "support": 44,
+        "predicted": 99,
+        "tp": 38,
+        "fp": 61,
+        "fn": 6,
+        "tn": 45
+      },
+      "weather": {
+        "precision": 0.5882352941176471,
+        "recall": 0.5,
+        "f1": 0.5405405405405405,
+        "support": 20,
+        "predicted": 17,
+        "tp": 10,
+        "fp": 7,
+        "fn": 10,
+        "tn": 123
+      },
+      "aircraft_equipment": {
+        "precision": 0.84375,
+        "recall": 0.47368421052631576,
+        "f1": 0.6067415730337079,
+        "support": 57,
+        "predicted": 32,
+        "tp": 27,
+        "fp": 5,
+        "fn": 30,
+        "tn": 88
+      },
+      "procedure": {
+        "precision": 0.6071428571428571,
+        "recall": 0.3269230769230769,
+        "f1": 0.425,
+        "support": 52,
+        "predicted": 28,
+        "tp": 17,
+        "fp": 11,
+        "fn": 35,
+        "tn": 87
+      },
+      "atc_airspace": {
+        "precision": 0.16470588235294117,
+        "recall": 0.6666666666666666,
+        "f1": 0.2641509433962264,
+        "support": 21,
+        "predicted": 85,
+        "tp": 14,
+        "fp": 71,
+        "fn": 7,
+        "tn": 58
+      },
+      "organisational": {
+        "precision": 0.18518518518518517,
+        "recall": 0.5,
+        "f1": 0.2702702702702703,
+        "support": 20,
+        "predicted": 54,
+        "tp": 10,
+        "fp": 44,
+        "fn": 10,
+        "tn": 86
+      },
+      "airport_environment": {
+        "precision": 0.55,
+        "recall": 0.4782608695652174,
+        "f1": 0.5116279069767442,
+        "support": 23,
+        "predicted": 20,
+        "tp": 11,
+        "fp": 9,
+        "fn": 12,
+        "tn": 118
+      }
+    },
+    "confusions": [
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "atc_airspace",
+        "count": 20
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "communication",
+        "count": 18
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "human_factors",
+        "count": 17
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "atc_airspace",
+        "count": 16
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "organisational",
+        "count": 13
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "communication",
+        "count": 13
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "organisational",
+        "count": 12
+      },
+      {
+        "missed": "airport_environment",
+        "predicted_instead": "atc_airspace",
+        "count": 8
+      }
+    ],
+    "seconds_per_report": 10.68,
+    "empty_predictions": 0
+  },
+  "tfidf_lr_same_sample": {
+    "n_samples": 150,
+    "micro": {
+      "precision": 0.6,
+      "recall": 0.8181818181818182,
+      "f1": 0.6923076923076923
+    },
+    "macro": {
+      "precision": 0.5055571526257736,
+      "recall": 0.6850420506408301,
+      "f1": 0.5733508665677481
+    },
+    "subset_accuracy": 0.24666666666666667,
+    "hamming_loss": 0.17777777777777778,
+    "per_label": {
+      "human_factors": {
+        "precision": 0.7543859649122807,
+        "recall": 0.9555555555555556,
+        "f1": 0.8431372549019609,
+        "support": 90,
+        "predicted": 114,
+        "tp": 86,
+        "fp": 28,
+        "fn": 4,
+        "tn": 32
+      },
+      "fatigue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3,
+        "predicted": 2,
+        "tp": 0,
+        "fp": 2,
+        "fn": 3,
+        "tn": 145
+      },
+      "communication": {
+        "precision": 0.5135135135135135,
+        "recall": 0.8636363636363636,
+        "f1": 0.6440677966101694,
+        "support": 44,
+        "predicted": 74,
+        "tp": 38,
+        "fp": 36,
+        "fn": 6,
+        "tn": 70
+      },
+      "weather": {
+        "precision": 0.5454545454545454,
+        "recall": 0.6,
+        "f1": 0.5714285714285713,
+        "support": 20,
+        "predicted": 22,
+        "tp": 12,
+        "fp": 10,
+        "fn": 8,
+        "tn": 120
+      },
+      "aircraft_equipment": {
+        "precision": 0.7894736842105263,
+        "recall": 0.7894736842105263,
+        "f1": 0.7894736842105263,
+        "support": 57,
+        "predicted": 57,
+        "tp": 45,
+        "fp": 12,
+        "fn": 12,
+        "tn": 81
+      },
+      "procedure": {
+        "precision": 0.5569620253164557,
+        "recall": 0.8461538461538461,
+        "f1": 0.6717557251908397,
+        "support": 52,
+        "predicted": 79,
+        "tp": 44,
+        "fp": 35,
+        "fn": 8,
+        "tn": 63
+      },
+      "atc_airspace": {
+        "precision": 0.5714285714285714,
+        "recall": 0.5714285714285714,
+        "f1": 0.5714285714285714,
+        "support": 21,
+        "predicted": 21,
+        "tp": 12,
+        "fp": 9,
+        "fn": 9,
+        "tn": 120
+      },
+      "organisational": {
+        "precision": 0.43243243243243246,
+        "recall": 0.8,
+        "f1": 0.5614035087719298,
+        "support": 20,
+        "predicted": 37,
+        "tp": 16,
+        "fp": 21,
+        "fn": 4,
+        "tn": 109
+      },
+      "airport_environment": {
+        "precision": 0.38636363636363635,
+        "recall": 0.7391304347826086,
+        "f1": 0.5074626865671641,
+        "support": 23,
+        "predicted": 44,
+        "tp": 17,
+        "fp": 27,
+        "fn": 6,
+        "tn": 100
+      }
+    },
+    "confusions": [
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "procedure",
+        "count": 5
+      },
+      {
+        "missed": "atc_airspace",
+        "predicted_instead": "procedure",
+        "count": 5
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "atc_airspace",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "human_factors",
+        "count": 3
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "procedure",
+        "count": 3
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "human_factors",
+        "count": 3
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "airport_environment",
+        "count": 3
+      }
+    ]
+  },
+  "embedding_lr_same_sample": {
+    "n_samples": 150,
+    "micro": {
+      "precision": 0.5912240184757506,
+      "recall": 0.7757575757575758,
+      "f1": 0.6710353866317169
+    },
+    "macro": {
+      "precision": 0.49281444771640853,
+      "recall": 0.6257969846070534,
+      "f1": 0.5391515367471722
+    },
+    "subset_accuracy": 0.25333333333333335,
+    "hamming_loss": 0.18592592592592594,
+    "per_label": {
+      "human_factors": {
+        "precision": 0.8235294117647058,
+        "recall": 0.9333333333333333,
+        "f1": 0.8749999999999999,
+        "support": 90,
+        "predicted": 102,
+        "tp": 84,
+        "fp": 18,
+        "fn": 6,
+        "tn": 42
+      },
+      "fatigue": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3,
+        "predicted": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 3,
+        "tn": 147
+      },
+      "communication": {
+        "precision": 0.5714285714285714,
+        "recall": 0.9090909090909091,
+        "f1": 0.7017543859649122,
+        "support": 44,
+        "predicted": 70,
+        "tp": 40,
+        "fp": 30,
+        "fn": 4,
+        "tn": 76
+      },
+      "weather": {
+        "precision": 0.5882352941176471,
+        "recall": 0.5,
+        "f1": 0.5405405405405405,
+        "support": 20,
+        "predicted": 17,
+        "tp": 10,
+        "fp": 7,
+        "fn": 10,
+        "tn": 123
+      },
+      "aircraft_equipment": {
+        "precision": 0.8076923076923077,
+        "recall": 0.7368421052631579,
+        "f1": 0.7706422018348624,
+        "support": 57,
+        "predicted": 52,
+        "tp": 42,
+        "fp": 10,
+        "fn": 15,
+        "tn": 83
+      },
+      "procedure": {
+        "precision": 0.5,
+        "recall": 0.8269230769230769,
+        "f1": 0.6231884057971014,
+        "support": 52,
+        "predicted": 86,
+        "tp": 43,
+        "fp": 43,
+        "fn": 9,
+        "tn": 55
+      },
+      "atc_airspace": {
+        "precision": 0.5,
+        "recall": 0.5238095238095238,
+        "f1": 0.5116279069767442,
+        "support": 21,
+        "predicted": 22,
+        "tp": 11,
+        "fp": 11,
+        "fn": 10,
+        "tn": 118
+      },
+      "organisational": {
+        "precision": 0.36666666666666664,
+        "recall": 0.55,
+        "f1": 0.43999999999999995,
+        "support": 20,
+        "predicted": 30,
+        "tp": 11,
+        "fp": 19,
+        "fn": 9,
+        "tn": 111
+      },
+      "airport_environment": {
+        "precision": 0.2777777777777778,
+        "recall": 0.6521739130434783,
+        "f1": 0.3896103896103896,
+        "support": 23,
+        "predicted": 54,
+        "tp": 15,
+        "fp": 39,
+        "fn": 8,
+        "tn": 88
+      }
+    },
+    "confusions": [
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "procedure",
+        "count": 8
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "human_factors",
+        "count": 6
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "procedure",
+        "count": 4
+      },
+      {
+        "missed": "aircraft_equipment",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "procedure",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "organisational",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "atc_airspace",
+        "predicted_instead": "airport_environment",
+        "count": 4
+      },
+      {
+        "missed": "weather",
+        "predicted_instead": "human_factors",
+        "count": 3
+      }
+    ]
+  },
+  "index": {
+    "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+    "dim": 384,
+    "chunking": {
+      "max_words": 160,
+      "overlap_words": 40
+    },
+    "n_reports": 9068,
+    "n_chunks": 28359,
+    "embedding_seconds": 499.7,
+    "built_at": "2026-11-27T17:45:29"
+  }
+}
