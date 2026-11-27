@@ -145,13 +145,13 @@ class SupervisedClassifier:
         out /= np.linalg.norm(out, axis=1, keepdims=True).clip(min=1e-9)
         return out
 
-    def _new_vectorizer(self) -> TfidfVectorizer:
+    def _new_vectorizer(self, n_docs: int = 1000) -> TfidfVectorizer:
         return TfidfVectorizer(
             tokenizer=tokenize,
             lowercase=False,
             token_pattern=None,
             ngram_range=(1, 2),
-            min_df=3,
+            min_df=3 if n_docs >= 100 else 1,  # tiny corpora (tests, demos) keep all terms
             max_df=0.9,
             sublinear_tf=True,
             max_features=100_000,
@@ -170,13 +170,14 @@ class SupervisedClassifier:
         if self.features == "embedding":
             x = embeddings if embeddings is not None else self._embed(texts)
         else:
-            self.vectorizer = self._new_vectorizer()
+            self.vectorizer = self._new_vectorizer(len(texts))
             x = self.vectorizer.fit_transform(texts)
-        if self.tune_thresholds:
+        # Out-of-fold threshold tuning needs enough reports per fold.
+        if self.tune_thresholds and len(y) >= 50:
             oof = np.zeros(y.shape, dtype=float)
             for tr, va in KFold(5, shuffle=True, random_state=self.seed).split(x):
                 if self.features == "tfidf":
-                    vec = self._new_vectorizer()
+                    vec = self._new_vectorizer(len(tr))
                     xtr = vec.fit_transform([texts[i] for i in tr])
                     xva = vec.transform([texts[i] for i in va])
                 else:
