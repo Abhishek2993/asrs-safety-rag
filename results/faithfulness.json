@@ -1,0 +1,568 @@
+{
+  "generator": "transformers:Qwen/Qwen2.5-1.5B-Instruct",
+  "n_evidence": 10,
+  "n_summaries": 10,
+  "n_statements": 50,
+  "citation_precision": 1.0,
+  "statement_coverage": 1.0,
+  "summaries_fully_grounded": 10,
+  "mean_citations_per_statement": 2.98,
+  "broad_statement_rate": 0.2,
+  "mean_lexical_support": 0.297988,
+  "low_support_rate": 0.28,
+  "thresholds": {
+    "broad_citations": 5,
+    "low_support": 0.2
+  },
+  "after_enforcement": "100% of displayed statements carry >=1 valid citation (ungrounded statements are removed by cite.enforce_citations)",
+  "per_summary": [
+    {
+      "filters": {
+        "phases": [
+          "approach"
+        ],
+        "year_from": 2020,
+        "year_to": 2022,
+        "labels": [
+          "weather"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 15,
+      "n_valid_citations": 15,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.2886,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Weather Conditions**: Multiple reports indicate that adverse weather conditions significantly impact pilots' ability to maintain control of their aircraft. For instance, [ACN 1868999], [ACN 1861720], [ACN 1864918], [ACN 1790703], [ACN 1786675], [ACN 1780058], [ACN 1768874], and [ACN 1844673] all highlight instances where weather conditions such as low visibility, poor lighting, or severe turbulence led to critical incidents including GPWS warnings, go-arounds, missed approaches, and even runway incursions.",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.5152
+        },
+        {
+          "text": "**Distractions and Distortions**: Several reports mention distractions affecting pilots' situational awareness. [ACN 1868999] discusses a pilot's attention diverted by a large transport's GPWS warning, leading to a descent risk. Similarly, [ACN 1861720] notes that a B737-700's first officer was distracted by retracted gear before flaps, which contributed to an ATC low altitude alert. [ACN 1864918] details how a B737 undifferentiated or other model's first officer became distracted, preventing timely recognition of descending below the intended path, causing an ATC low altitude alert and GPWS terrain alerts.",
+          "n_citations": 3,
+          "n_valid": 3,
+          "support": 0.3778
+        },
+        {
+          "text": "**Visual Obstructions**: Reports suggest visual obstructions can impair pilots' ability to see the runway accurately. [ACN 1819866] describes how a skyhawk pilot's sun in the eye caused difficulty in reading the altimeter, leading to a descent near the ground. Additionally, [ACN 1790703] mentions that an air carrier fixed wing pilot had to go around multiple times due to a vehicle on the runway, highlighting the importance of clear visual references for safe approach procedures.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2308
+        },
+        {
+          "text": "**Gusty Conditions**: Gusty winds pose significant challenges for pilots maintaining stable approaches. [ACN 1790703] documents an unstable approach due to gusty conditions, indicating that strong wind gusts can destabilize aircraft, making it difficult for pilots to maintain proper control over the aircraft's descent and glide path.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1429
+        },
+        {
+          "text": "**Microbursts and Poor Braking Action**: Microbursts and poor braking action contribute to unexpected situations during final approaches. [ACN 1844673] recounts how a small aircraft with retractable gear encountered a microburst, forcing it to regain control after vectoring to another airport. This report underscores the potential hazards associated with sudden changes in atmospheric conditions and the need for robust contingency plans.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1765
+        }
+      ],
+      "raw_text": "- **Weather Conditions**: Multiple reports indicate that adverse weather conditions significantly impact pilots' ability to maintain control of their aircraft. For instance, [ACN 1868999], [ACN 1861720], [ACN 1864918], [ACN 1790703], [ACN 1786675], [ACN 1780058], [ACN 1768874], and [ACN 1844673] all highlight instances where weather conditions such as low visibility, poor lighting, or severe turbulence led to critical incidents including GPWS warnings, go-arounds, missed approaches, and even runway incursions.\n\n- **Distractions and Distortions**: Several reports mention distractions affecting pilots' situational awareness. [ACN 1868999] discusses a pilot's attention diverted by a large transport's GPWS warning, leading to a descent risk. Similarly, [ACN 1861720] notes that a B737-700's first officer was distracted by retracted gear before flaps, which contributed to an ATC low altitude alert. [ACN 1864918] details how a B737 undifferentiated or other model's first officer became distracted, preventing timely recognition of descending below the intended path, causing an ATC low altitude alert and GPWS terrain alerts.\n\n- **Visual Obstructions**: Reports suggest visual obstructions can impair pilots' ability to see the runway accurately. [ACN 1819866] describes how a skyhawk pilot's sun in the eye caused difficulty in reading the altimeter, leading to a descent near the ground. Additionally, [ACN 1790703] mentions that an air carrier fixed wing pilot had to go around multiple times due to a vehicle on the runway, highlighting the importance of clear visual references for safe approach procedures.\n\n- **Gusty Conditions**: Gusty winds pose significant challenges for pilots maintaining stable approaches. [ACN 1790703] documents an unstable approach due to gusty conditions, indicating that strong wind gusts can destabilize aircraft, making it difficult for pilots to maintain proper control over the aircraft's descent and glide path.\n\n- **Microbursts and Poor Braking Action**: Microbursts and poor braking action contribute to unexpected situations during final approaches. [ACN 1844673] recounts how a small aircraft with retractable gear encountered a microburst, forcing it to regain control after vectoring to another airport. This report underscores the potential hazards associated with sudden changes in atmospheric conditions and the need for robust contingency plans.",
+      "enforced_text": "- **Weather Conditions**: Multiple reports indicate that adverse weather conditions significantly impact pilots' ability to maintain control of their aircraft. For instance, [ACN 1868999], [ACN 1861720], [ACN 1864918], [ACN 1790703], [ACN 1786675], [ACN 1780058], [ACN 1768874], and [ACN 1844673] all highlight instances where weather conditions such as low visibility, poor lighting, or severe turbulence led to critical incidents including GPWS warnings, go-arounds, missed approaches, and even runway incursions.\n- **Distractions and Distortions**: Several reports mention distractions affecting pilots' situational awareness. [ACN 1868999] discusses a pilot's attention diverted by a large transport's GPWS warning, leading to a descent risk. Similarly, [ACN 1861720] notes that a B737-700's first officer was distracted by retracted gear before flaps, which contributed to an ATC low altitude alert. [ACN 1864918] details how a B737 undifferentiated or other model's first officer became distracted, preventing timely recognition of descending below the intended path, causing an ATC low altitude alert and GPWS terrain alerts.\n- **Visual Obstructions**: Reports suggest visual obstructions can impair pilots' ability to see the runway accurately. [ACN 1819866] describes how a skyhawk pilot's sun in the eye caused difficulty in reading the altimeter, leading to a descent near the ground. Additionally, [ACN 1790703] mentions that an air carrier fixed wing pilot had to go around multiple times due to a vehicle on the runway, highlighting the importance of clear visual references for safe approach procedures.\n- **Gusty Conditions**: Gusty winds pose significant challenges for pilots maintaining stable approaches. [ACN 1790703] documents an unstable approach due to gusty conditions, indicating that strong wind gusts can destabilize aircraft, making it difficult for pilots to maintain proper control over the aircraft's descent and glide path.\n- **Microbursts and Poor Braking Action**: Microbursts and poor braking action contribute to unexpected situations during final approaches. [ACN 1844673] recounts how a small aircraft with retractable gear encountered a microburst, forcing it to regain control after vectoring to another airport. This report underscores the potential hazards associated with sudden changes in atmospheric conditions and the need for robust contingency plans.",
+      "removed_statements": [],
+      "n_reports": 23
+    },
+    {
+      "filters": {
+        "phases": [
+          "approach"
+        ],
+        "year_from": 2012,
+        "year_to": 2022
+      },
+      "n_statements": 5,
+      "n_citations": 7,
+      "n_valid_citations": 7,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.2064,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Loss of Navigation Equipment**: Multiple incidents involving loss of GPS signal (ACN 1873864) and loss of flight director (ACN 1873965), indicating critical navigation equipment failures can lead to unsafe situations during approach phases.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.1667
+        },
+        {
+          "text": "**TCAS Interference**: Reports of Terrain Alerts causing unstable approaches (ACN 1874863) highlight how radar systems can interfere with pilots' ability to make safe decisions during approach procedures.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.4211
+        },
+        {
+          "text": "**Radio Altimeter Errors**: Two instances where incorrect RA warnings led to go-arounds (ACN 1874118 and ACN 1873965) underscore the potential for pilot error due to inaccurate information received through communication systems.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2778
+        },
+        {
+          "text": "**Flight Director Failure**: Loss of flight director functionality during descent (ACN 1873864) suggests that such failures could result in significant deviations from intended flight paths, potentially leading to accidents if not promptly addressed.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.0556
+        },
+        {
+          "text": "**Fume Events During Approach**: Fume events occurring during climbs and approaches (ACN 1873965) indicate that cabin management issues can affect passenger comfort and health, which may impact overall flight safety.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1111
+        }
+      ],
+      "raw_text": "- **Loss of Navigation Equipment**: Multiple incidents involving loss of GPS signal (ACN 1873864) and loss of flight director (ACN 1873965), indicating critical navigation equipment failures can lead to unsafe situations during approach phases.\n  \n- **TCAS Interference**: Reports of Terrain Alerts causing unstable approaches (ACN 1874863) highlight how radar systems can interfere with pilots' ability to make safe decisions during approach procedures.\n\n- **Radio Altimeter Errors**: Two instances where incorrect RA warnings led to go-arounds (ACN 1874118 and ACN 1873965) underscore the potential for pilot error due to inaccurate information received through communication systems.\n\n- **Flight Director Failure**: Loss of flight director functionality during descent (ACN 1873864) suggests that such failures could result in significant deviations from intended flight paths, potentially leading to accidents if not promptly addressed.\n\n- **Fume Events During Approach**: Fume events occurring during climbs and approaches (ACN 1873965) indicate that cabin management issues can affect passenger comfort and health, which may impact overall flight safety.",
+      "enforced_text": "- **Loss of Navigation Equipment**: Multiple incidents involving loss of GPS signal (ACN 1873864) and loss of flight director (ACN 1873965), indicating critical navigation equipment failures can lead to unsafe situations during approach phases.\n- **TCAS Interference**: Reports of Terrain Alerts causing unstable approaches (ACN 1874863) highlight how radar systems can interfere with pilots' ability to make safe decisions during approach procedures.\n- **Radio Altimeter Errors**: Two instances where incorrect RA warnings led to go-arounds (ACN 1874118 and ACN 1873965) underscore the potential for pilot error due to inaccurate information received through communication systems.\n- **Flight Director Failure**: Loss of flight director functionality during descent (ACN 1873864) suggests that such failures could result in significant deviations from intended flight paths, potentially leading to accidents if not promptly addressed.\n- **Fume Events During Approach**: Fume events occurring during climbs and approaches (ACN 1873965) indicate that cabin management issues can affect passenger comfort and health, which may impact overall flight safety.",
+      "removed_statements": [],
+      "n_reports": 1661
+    },
+    {
+      "filters": {
+        "phases": [
+          "taxi"
+        ],
+        "labels": [
+          "communication"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 7,
+      "n_valid_citations": 7,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.2746,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Communication Issues During Taxi:** Multiple incidents highlight difficulties in effective communication between pilots and ground staff. For example, [ACN 1863381], where the First Officer experienced problems communicating with ground crew during a pushback, leading to a hard brake application to avoid a collision. Similarly, [ACN 1868600] shows a flight instructor reporting an inadvertent takeoff while practicing high-speed taxi runs with a student, indicating challenges in maintaining clear communication even under controlled conditions.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.4146
+        },
+        {
+          "text": "**Ground Staff Misunderstandings:** Ground crews sometimes misinterpret instructions or signals, leading to unexpected actions by pilots. [ACN 1868779] demonstrates this when the flight crew attempted to restart the #1 engine but encountered a second hangar start, which was likely misunderstood as a command rather than a warning sign. Another instance is [ACN 1822656], where a taxiway incursion occurred due to poor signage, suggesting that inadequate communication can lead to operational errors.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.3158
+        },
+        {
+          "text": "**Inadequate Information Sharing:** There are instances where information shared among crew members is insufficient or unclear, potentially leading to confusion and unsafe practices. [ACN 1855567] illustrates this with the first officer experiencing significant delays due to discrepancies between the electronic Airport Moving Map (AMM) and the Jeppesen taxi chart, highlighting the importance of accurate and consistent information sharing.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.2812
+        },
+        {
+          "text": "**Weather Conditions Impacting Communication:** Weather-related factors can also affect communication, particularly during taxi operations. [ACN 1868126] mentions an abrupt braking maneuver to avoid a collision with another aircraft, possibly influenced by adverse weather conditions affecting visibility or runway conditions. This underscores how environmental factors can complicate communication and decision-making processes.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.25
+        },
+        {
+          "text": "**Crew Fatigue and Stress:** High levels of stress and fatigue can impair communication skills and judgment, contributing to accidents. [ACN 1841634] describes a scenario where the air carrier captain faced numerous performance and weight issues, requiring frequent offloading of passengers and baggage, culminating in a delayed departure necessitating offloading again. This highlights how prolonged stress and fatigue can degrade situational awareness and communication abilities.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1111
+        }
+      ],
+      "raw_text": "- **Communication Issues During Taxi:** Multiple incidents highlight difficulties in effective communication between pilots and ground staff. For example, [ACN 1863381], where the First Officer experienced problems communicating with ground crew during a pushback, leading to a hard brake application to avoid a collision. Similarly, [ACN 1868600] shows a flight instructor reporting an inadvertent takeoff while practicing high-speed taxi runs with a student, indicating challenges in maintaining clear communication even under controlled conditions.\n\n- **Ground Staff Misunderstandings:** Ground crews sometimes misinterpret instructions or signals, leading to unexpected actions by pilots. [ACN 1868779] demonstrates this when the flight crew attempted to restart the #1 engine but encountered a second hangar start, which was likely misunderstood as a command rather than a warning sign. Another instance is [ACN 1822656], where a taxiway incursion occurred due to poor signage, suggesting that inadequate communication can lead to operational errors.\n\n- **Inadequate Information Sharing:** There are instances where information shared among crew members is insufficient or unclear, potentially leading to confusion and unsafe practices. [ACN 1855567] illustrates this with the first officer experiencing significant delays due to discrepancies between the electronic Airport Moving Map (AMM) and the Jeppesen taxi chart, highlighting the importance of accurate and consistent information sharing.\n\n- **Weather Conditions Impacting Communication:** Weather-related factors can also affect communication, particularly during taxi operations. [ACN 1868126] mentions an abrupt braking maneuver to avoid a collision with another aircraft, possibly influenced by adverse weather conditions affecting visibility or runway conditions. This underscores how environmental factors can complicate communication and decision-making processes.\n\n- **Crew Fatigue and Stress:** High levels of stress and fatigue can impair communication skills and judgment, contributing to accidents. [ACN 1841634] describes a scenario where the air carrier captain faced numerous performance and weight issues, requiring frequent offloading of passengers and baggage, culminating in a delayed departure necessitating offloading again. This highlights how prolonged stress and fatigue can degrade situational awareness and communication abilities.",
+      "enforced_text": "- **Communication Issues During Taxi:** Multiple incidents highlight difficulties in effective communication between pilots and ground staff. For example, [ACN 1863381], where the First Officer experienced problems communicating with ground crew during a pushback, leading to a hard brake application to avoid a collision. Similarly, [ACN 1868600] shows a flight instructor reporting an inadvertent takeoff while practicing high-speed taxi runs with a student, indicating challenges in maintaining clear communication even under controlled conditions.\n- **Ground Staff Misunderstandings:** Ground crews sometimes misinterpret instructions or signals, leading to unexpected actions by pilots. [ACN 1868779] demonstrates this when the flight crew attempted to restart the #1 engine but encountered a second hangar start, which was likely misunderstood as a command rather than a warning sign. Another instance is [ACN 1822656], where a taxiway incursion occurred due to poor signage, suggesting that inadequate communication can lead to operational errors.\n- **Inadequate Information Sharing:** There are instances where information shared among crew members is insufficient or unclear, potentially leading to confusion and unsafe practices. [ACN 1855567] illustrates this with the first officer experiencing significant delays due to discrepancies between the electronic Airport Moving Map (AMM) and the Jeppesen taxi chart, highlighting the importance of accurate and consistent information sharing.\n- **Weather Conditions Impacting Communication:** Weather-related factors can also affect communication, particularly during taxi operations. [ACN 1868126] mentions an abrupt braking maneuver to avoid a collision with another aircraft, possibly influenced by adverse weather conditions affecting visibility or runway conditions. This underscores how environmental factors can complicate communication and decision-making processes.\n- **Crew Fatigue and Stress:** High levels of stress and fatigue can impair communication skills and judgment, contributing to accidents. [ACN 1841634] describes a scenario where the air carrier captain faced numerous performance and weight issues, requiring frequent offloading of passengers and baggage, culminating in a delayed departure necessitating offloading again. This highlights how prolonged stress and fatigue can degrade situational awareness and communication abilities.",
+      "removed_statements": [],
+      "n_reports": 367
+    },
+    {
+      "filters": {
+        "phases": [
+          "cruise"
+        ],
+        "labels": [
+          "fatigue"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 48,
+      "n_valid_citations": 48,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.5525,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "Fatigue is a recurring issue affecting various flight phases including cruise, climb, descent, and even center controller operations. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+          "n_citations": 10,
+          "n_valid": 10,
+          "support": 0.6429
+        },
+        {
+          "text": "Crew members often report feeling fatigued, which can lead to poor judgment and operational errors. [ACN 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.7
+        },
+        {
+          "text": "Fatigue affects different aspects of flight operations such as communication, decision-making, and adherence to procedures. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+          "n_citations": 10,
+          "n_valid": 10,
+          "support": 0.5
+        },
+        {
+          "text": "The impact of fatigue extends beyond just individual incidents; it contributes to overall inefficiencies and potential safety risks within the aviation industry. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+          "n_citations": 10,
+          "n_valid": 10,
+          "support": 0.3571
+        },
+        {
+          "text": "Fatigue among pilots and air traffic controllers has been linked to increased risk of accidents, particularly those involving altitude deviations and other critical flight maneuvers. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+          "n_citations": 10,
+          "n_valid": 10,
+          "support": 0.5625
+        }
+      ],
+      "raw_text": "- Fatigue is a recurring issue affecting various flight phases including cruise, climb, descent, and even center controller operations. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Crew members often report feeling fatigued, which can lead to poor judgment and operational errors. [ACN 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Fatigue affects different aspects of flight operations such as communication, decision-making, and adherence to procedures. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- The impact of fatigue extends beyond just individual incidents; it contributes to overall inefficiencies and potential safety risks within the aviation industry. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Fatigue among pilots and air traffic controllers has been linked to increased risk of accidents, particularly those involving altitude deviations and other critical flight maneuvers. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+      "enforced_text": "- Fatigue is a recurring issue affecting various flight phases including cruise, climb, descent, and even center controller operations. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Crew members often report feeling fatigued, which can lead to poor judgment and operational errors. [ACN 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Fatigue affects different aspects of flight operations such as communication, decision-making, and adherence to procedures. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- The impact of fatigue extends beyond just individual incidents; it contributes to overall inefficiencies and potential safety risks within the aviation industry. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]\n- Fatigue among pilots and air traffic controllers has been linked to increased risk of accidents, particularly those involving altitude deviations and other critical flight maneuvers. [ACN 1869048, 1822920, 1778670, 1726206, 1773000, 1647779, 1742698, 1472510, 1339007, 1759257]",
+      "removed_statements": [],
+      "n_reports": 30
+    },
+    {
+      "filters": {
+        "labels": [
+          "aircraft_equipment"
+        ],
+        "phases": [
+          "climb"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 9,
+      "n_valid_citations": 9,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.2572,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Aircraft Equipment Issues**: Multiple incidents highlight issues related to equipment malfunctions and system failures. For example, [ACN 1875866] describes a commercial fixed wing where the first officer's radio altimeter malfunctioned, leading to a need for a safe air return. Similarly, [ACN 1875802] details a CRJ900 where a fume/smoke event occurred after takeoff, which required troubleshooting before executing a safe air return. These events underscore the importance of robust maintenance and continuous monitoring of critical avionics systems.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.3182
+        },
+        {
+          "text": "**Noise Levels and Distractions**: There is evidence of significant noise levels affecting flight crews. [ACN 1874988] mentions a B737-700 where a flight attendant experienced pain due to excessive noise from a main cabin door, indicating potential health risks associated with prolonged exposure to high noise levels. This underscores the need for effective noise reduction measures in aircraft design and operation.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.2727
+        },
+        {
+          "text": "**Communication Failures**: Communication difficulties between pilots and ground control are frequent themes. [ACN 1869200] documents a scenario where a flight crew encountered communication problems during a mechanical issue, suggesting inadequate coordination mechanisms or degraded communication infrastructure could be contributing factors. Additionally, [ACN 1870317] highlights another instance of a GPS invalid message, further emphasizing the reliance on accurate navigation systems and their vulnerability to disruptions.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.1892
+        },
+        {
+          "text": "**System Interference and Malfunction**: System interference and malfunctioning components are common causes of incidents. [ACN 1875866] discusses a regional jet where the radio altimeter malfunctioned, necessitating a safe air return. Another notable case is [ACN 1870317], where a GPS invalid message led to a similar situation. Both cases indicate the critical role of reliable and uninterrupted systems in ensuring safe operations.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2647
+        },
+        {
+          "text": "**ATC Errors and Automation Issues**: Automated systems can sometimes lead to unexpected outcomes. [ACN 1875866] notes a GPS invalid message during initial climb, while [ACN 1870317] mentions a low altitude alert due to incorrect automation management. These incidents suggest that automated systems should be designed with redundancy and fail-safes to prevent such errors from escalating into emergencies.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2414
+        }
+      ],
+      "raw_text": "- **Aircraft Equipment Issues**: Multiple incidents highlight issues related to equipment malfunctions and system failures. For example, [ACN 1875866] describes a commercial fixed wing where the first officer's radio altimeter malfunctioned, leading to a need for a safe air return. Similarly, [ACN 1875802] details a CRJ900 where a fume/smoke event occurred after takeoff, which required troubleshooting before executing a safe air return. These events underscore the importance of robust maintenance and continuous monitoring of critical avionics systems.\n\n- **Noise Levels and Distractions**: There is evidence of significant noise levels affecting flight crews. [ACN 1874988] mentions a B737-700 where a flight attendant experienced pain due to excessive noise from a main cabin door, indicating potential health risks associated with prolonged exposure to high noise levels. This underscores the need for effective noise reduction measures in aircraft design and operation.\n\n- **Communication Failures**: Communication difficulties between pilots and ground control are frequent themes. [ACN 1869200] documents a scenario where a flight crew encountered communication problems during a mechanical issue, suggesting inadequate coordination mechanisms or degraded communication infrastructure could be contributing factors. Additionally, [ACN 1870317] highlights another instance of a GPS invalid message, further emphasizing the reliance on accurate navigation systems and their vulnerability to disruptions.\n\n- **System Interference and Malfunction**: System interference and malfunctioning components are common causes of incidents. [ACN 1875866] discusses a regional jet where the radio altimeter malfunctioned, necessitating a safe air return. Another notable case is [ACN 1870317], where a GPS invalid message led to a similar situation. Both cases indicate the critical role of reliable and uninterrupted systems in ensuring safe operations.\n\n- **ATC Errors and Automation Issues**: Automated systems can sometimes lead to unexpected outcomes. [ACN 1875866] notes a GPS invalid message during initial climb, while [ACN 1870317] mentions a low altitude alert due to incorrect automation management. These incidents suggest that automated systems should be designed with redundancy and fail-safes to prevent such errors from escalating into emergencies.",
+      "enforced_text": "- **Aircraft Equipment Issues**: Multiple incidents highlight issues related to equipment malfunctions and system failures. For example, [ACN 1875866] describes a commercial fixed wing where the first officer's radio altimeter malfunctioned, leading to a need for a safe air return. Similarly, [ACN 1875802] details a CRJ900 where a fume/smoke event occurred after takeoff, which required troubleshooting before executing a safe air return. These events underscore the importance of robust maintenance and continuous monitoring of critical avionics systems.\n- **Noise Levels and Distractions**: There is evidence of significant noise levels affecting flight crews. [ACN 1874988] mentions a B737-700 where a flight attendant experienced pain due to excessive noise from a main cabin door, indicating potential health risks associated with prolonged exposure to high noise levels. This underscores the need for effective noise reduction measures in aircraft design and operation.\n- **Communication Failures**: Communication difficulties between pilots and ground control are frequent themes. [ACN 1869200] documents a scenario where a flight crew encountered communication problems during a mechanical issue, suggesting inadequate coordination mechanisms or degraded communication infrastructure could be contributing factors. Additionally, [ACN 1870317] highlights another instance of a GPS invalid message, further emphasizing the reliance on accurate navigation systems and their vulnerability to disruptions.\n- **System Interference and Malfunction**: System interference and malfunctioning components are common causes of incidents. [ACN 1875866] discusses a regional jet where the radio altimeter malfunctioned, necessitating a safe air return. Another notable case is [ACN 1870317], where a GPS invalid message led to a similar situation. Both cases indicate the critical role of reliable and uninterrupted systems in ensuring safe operations.\n- **ATC Errors and Automation Issues**: Automated systems can sometimes lead to unexpected outcomes. [ACN 1875866] notes a GPS invalid message during initial climb, while [ACN 1870317] mentions a low altitude alert due to incorrect automation management. These incidents suggest that automated systems should be designed with redundancy and fail-safes to prevent such errors from escalating into emergencies.",
+      "removed_statements": [],
+      "n_reports": 734
+    },
+    {
+      "filters": {
+        "phases": [
+          "parked"
+        ],
+        "labels": [
+          "organisational"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 6,
+      "n_valid_citations": 6,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.1582,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Parked Aircraft Configuration Errors**: Multiple incidents involving incorrect configurations of hazardous materials (HazMat) loads have been reported when aircraft were parked. For example, [ACN 1873985], where a passenger's luggage containing a handwritten \"firearms\" note was found on board, and [ACN 1866262], where the flight crew refused to accept a HazMat shipment due to discrepancies in documentation. These issues highlight the importance of thorough pre-flight checks and proper labeling of cargo.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2632
+        },
+        {
+          "text": "**Engine Oil Dipstick Misses During Post-Flight Inspection**: One report indicates that an engine oil dipstick was missing during a post-flight inspection conducted by maintenance technicians. This oversight can lead to potential engine failures if the oil level is critical for safe operation. [ACN 1826531].",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1
+        },
+        {
+          "text": "**Incorrect Software Installation**: There has been one instance where the wrong software was installed on a plane, leading to operational issues. Specifically, [ACN 1863734] describes how the installation of software meant for the B-737 MAX instead of the actual B-737-900 caused problems during a line replacement test. This underscores the need for accurate software versions and clear instructions for pilots and maintenance teams.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.0312
+        },
+        {
+          "text": "**Parked Aircraft Too Close Together**: Reports indicate that parked aircraft are sometimes positioned too closely together, which can pose risks such as collision hazards. [ACN 1864259] mentions that parked aircraft are often parked too close together, especially large aircraft, potentially increasing the risk of collisions. This highlights the importance of adequate spacing between parked aircraft.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.0455
+        },
+        {
+          "text": "**Failure to Release Flights Due to Equipment Outage**: Dispatchers faced challenges releasing flights because essential NOTAMs were unavailable due to equipment outages. This situation led to delays and increased workload for dispatchers, who were instructed to seek assistance from airport operations but did not follow proper procedures. [ACN 1810763]. This case emphasizes the need for robust communication protocols and adherence to established procedures in emergency situations.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.3514
+        }
+      ],
+      "raw_text": "- **Parked Aircraft Configuration Errors**: Multiple incidents involving incorrect configurations of hazardous materials (HazMat) loads have been reported when aircraft were parked. For example, [ACN 1873985], where a passenger's luggage containing a handwritten \"firearms\" note was found on board, and [ACN 1866262], where the flight crew refused to accept a HazMat shipment due to discrepancies in documentation. These issues highlight the importance of thorough pre-flight checks and proper labeling of cargo.\n\n- **Engine Oil Dipstick Misses During Post-Flight Inspection**: One report indicates that an engine oil dipstick was missing during a post-flight inspection conducted by maintenance technicians. This oversight can lead to potential engine failures if the oil level is critical for safe operation. [ACN 1826531].\n\n- **Incorrect Software Installation**: There has been one instance where the wrong software was installed on a plane, leading to operational issues. Specifically, [ACN 1863734] describes how the installation of software meant for the B-737 MAX instead of the actual B-737-900 caused problems during a line replacement test. This underscores the need for accurate software versions and clear instructions for pilots and maintenance teams.\n\n- **Parked Aircraft Too Close Together**: Reports indicate that parked aircraft are sometimes positioned too closely together, which can pose risks such as collision hazards. [ACN 1864259] mentions that parked aircraft are often parked too close together, especially large aircraft, potentially increasing the risk of collisions. This highlights the importance of adequate spacing between parked aircraft.\n\n- **Failure to Release Flights Due to Equipment Outage**: Dispatchers faced challenges releasing flights because essential NOTAMs were unavailable due to equipment outages. This situation led to delays and increased workload for dispatchers, who were instructed to seek assistance from airport operations but did not follow proper procedures. [ACN 1810763]. This case emphasizes the need for robust communication protocols and adherence to established procedures in emergency situations.",
+      "enforced_text": "- **Parked Aircraft Configuration Errors**: Multiple incidents involving incorrect configurations of hazardous materials (HazMat) loads have been reported when aircraft were parked. For example, [ACN 1873985], where a passenger's luggage containing a handwritten \"firearms\" note was found on board, and [ACN 1866262], where the flight crew refused to accept a HazMat shipment due to discrepancies in documentation. These issues highlight the importance of thorough pre-flight checks and proper labeling of cargo.\n- **Engine Oil Dipstick Misses During Post-Flight Inspection**: One report indicates that an engine oil dipstick was missing during a post-flight inspection conducted by maintenance technicians. This oversight can lead to potential engine failures if the oil level is critical for safe operation. [ACN 1826531].\n- **Incorrect Software Installation**: There has been one instance where the wrong software was installed on a plane, leading to operational issues. Specifically, [ACN 1863734] describes how the installation of software meant for the B-737 MAX instead of the actual B-737-900 caused problems during a line replacement test. This underscores the need for accurate software versions and clear instructions for pilots and maintenance teams.\n- **Parked Aircraft Too Close Together**: Reports indicate that parked aircraft are sometimes positioned too closely together, which can pose risks such as collision hazards. [ACN 1864259] mentions that parked aircraft are often parked too close together, especially large aircraft, potentially increasing the risk of collisions. This highlights the importance of adequate spacing between parked aircraft.\n- **Failure to Release Flights Due to Equipment Outage**: Dispatchers faced challenges releasing flights because essential NOTAMs were unavailable due to equipment outages. This situation led to delays and increased workload for dispatchers, who were instructed to seek assistance from airport operations but did not follow proper procedures. [ACN 1810763]. This case emphasizes the need for robust communication protocols and adherence to established procedures in emergency situations.",
+      "removed_statements": [],
+      "n_reports": 486
+    },
+    {
+      "filters": {
+        "labels": [
+          "atc_airspace"
+        ],
+        "year_from": 2018
+      },
+      "n_statements": 5,
+      "n_citations": 8,
+      "n_valid_citations": 8,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.243,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**ATC Supervision Issues**: Multiple incidents highlight problems with ATC supervision, particularly regarding clearance management and adherence to established procedures. For example, [ACN 1880721] indicates that ATC supervisors have noted ongoing issues with aircraft entering restricted airspace without proper clearance, suggesting a need for enhanced coordination between controllers and pilots.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.2333
+        },
+        {
+          "text": "**Equipment Malfunctions**: There are instances where equipment malfunctions led to operational difficulties. [ACN 1875580], [ACN 1874863], and [ACN 1866193] all report equipment-related issues such as equipment malfunction causing violations of airspace rules and altering flight paths.",
+          "n_citations": 3,
+          "n_valid": 3,
+          "support": 0.2353
+        },
+        {
+          "text": "**Communication Problems**: Communication failures can lead to significant safety risks. [ACN 1870335] shows a scenario where a GPS signal failure during a final approach disrupted navigation, necessitating a go-around. Similarly, [ACN 1860357] details a situation where a pilot experienced difficulty communicating with ATC due to radio interference, which could impede timely and effective situational awareness.",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.3333
+        },
+        {
+          "text": "**Altitude Confusion**: Misunderstandings about altitude information can result in unsafe situations. [ACN 1864259] illustrates confusion over an altitude discrepancy between published charts and actual tower instructions, leading to potential deviations from intended routes.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1053
+        },
+        {
+          "text": "**Navigation System Failures**: Navigation system failures pose serious threats to safe operations. [ACN 1870316] documents a case where a GPS signal failure occurred during a descent to Denver Airport, disrupting the aircraft's ability to maintain its planned route, potentially resulting in a deviation from the intended path.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.3077
+        }
+      ],
+      "raw_text": "- **ATC Supervision Issues**: Multiple incidents highlight problems with ATC supervision, particularly regarding clearance management and adherence to established procedures. For example, [ACN 1880721] indicates that ATC supervisors have noted ongoing issues with aircraft entering restricted airspace without proper clearance, suggesting a need for enhanced coordination between controllers and pilots.\n\n- **Equipment Malfunctions**: There are instances where equipment malfunctions led to operational difficulties. [ACN 1875580], [ACN 1874863], and [ACN 1866193] all report equipment-related issues such as equipment malfunction causing violations of airspace rules and altering flight paths.\n\n- **Communication Problems**: Communication failures can lead to significant safety risks. [ACN 1870335] shows a scenario where a GPS signal failure during a final approach disrupted navigation, necessitating a go-around. Similarly, [ACN 1860357] details a situation where a pilot experienced difficulty communicating with ATC due to radio interference, which could impede timely and effective situational awareness.\n\n- **Altitude Confusion**: Misunderstandings about altitude information can result in unsafe situations. [ACN 1864259] illustrates confusion over an altitude discrepancy between published charts and actual tower instructions, leading to potential deviations from intended routes.\n\n- **Navigation System Failures**: Navigation system failures pose serious threats to safe operations. [ACN 1870316] documents a case where a GPS signal failure occurred during a descent to Denver Airport, disrupting the aircraft's ability to maintain its planned route, potentially resulting in a deviation from the intended path.",
+      "enforced_text": "- **ATC Supervision Issues**: Multiple incidents highlight problems with ATC supervision, particularly regarding clearance management and adherence to established procedures. For example, [ACN 1880721] indicates that ATC supervisors have noted ongoing issues with aircraft entering restricted airspace without proper clearance, suggesting a need for enhanced coordination between controllers and pilots.\n- **Equipment Malfunctions**: There are instances where equipment malfunctions led to operational difficulties. [ACN 1875580], [ACN 1874863], and [ACN 1866193] all report equipment-related issues such as equipment malfunction causing violations of airspace rules and altering flight paths.\n- **Communication Problems**: Communication failures can lead to significant safety risks. [ACN 1870335] shows a scenario where a GPS signal failure during a final approach disrupted navigation, necessitating a go-around. Similarly, [ACN 1860357] details a situation where a pilot experienced difficulty communicating with ATC due to radio interference, which could impede timely and effective situational awareness.\n- **Altitude Confusion**: Misunderstandings about altitude information can result in unsafe situations. [ACN 1864259] illustrates confusion over an altitude discrepancy between published charts and actual tower instructions, leading to potential deviations from intended routes.\n- **Navigation System Failures**: Navigation system failures pose serious threats to safe operations. [ACN 1870316] documents a case where a GPS signal failure occurred during a descent to Denver Airport, disrupting the aircraft's ability to maintain its planned route, potentially resulting in a deviation from the intended path.",
+      "removed_statements": [],
+      "n_reports": 373
+    },
+    {
+      "filters": {
+        "phases": [
+          "landing"
+        ],
+        "labels": [
+          "airport_environment"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 5,
+      "n_valid_citations": 5,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.366,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Incorrect Weather Reporting and Field Conditions**: Multiple incidents involving incorrect weather reporting led to runway excursions and other mishaps. For example, [ACN 1862644], where flight crews experienced rapid changes in weather conditions leading to a runway excursion.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.5
+        },
+        {
+          "text": "**Communication Issues**: Communication problems between pilots and air traffic control resulted in runway incursions and other unsafe situations. The report [ACN 1863268] illustrates this issue clearly, where a pilot had difficulty communicating with the aircraft.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.35
+        },
+        {
+          "text": "**Suboptimal Footwear**: In some cases, improper footwear affected the ability to maneuver the aircraft safely. [ACN 1868201] details how pilot's inability to effectively use rudder pedals due to sub-optimal footwear caused a runway excursion.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.35
+        },
+        {
+          "text": "**Lack of Clear Runway Indicators**: Instances where runways were not properly marked or indicated before landing led to accidents. [ACN 1869711] describes a scenario where a small aircraft lost control after hitting a snow berm because the runway wasn't adequately cleared.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.0417
+        },
+        {
+          "text": "**Fatigue and Recent Flying**: Fatigue and lack of recent flying hours contributed to several incidents, including one where a commercial fixed-wing aircraft landed without proper clearance from tower. [ACN 1751096] highlights this point.",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.5882
+        }
+      ],
+      "raw_text": "- **Incorrect Weather Reporting and Field Conditions**: Multiple incidents involving incorrect weather reporting led to runway excursions and other mishaps. For example, [ACN 1862644], where flight crews experienced rapid changes in weather conditions leading to a runway excursion.\n  \n- **Communication Issues**: Communication problems between pilots and air traffic control resulted in runway incursions and other unsafe situations. The report [ACN 1863268] illustrates this issue clearly, where a pilot had difficulty communicating with the aircraft.\n  \n- **Suboptimal Footwear**: In some cases, improper footwear affected the ability to maneuver the aircraft safely. [ACN 1868201] details how pilot's inability to effectively use rudder pedals due to sub-optimal footwear caused a runway excursion.\n  \n- **Lack of Clear Runway Indicators**: Instances where runways were not properly marked or indicated before landing led to accidents. [ACN 1869711] describes a scenario where a small aircraft lost control after hitting a snow berm because the runway wasn't adequately cleared.\n  \n- **Fatigue and Recent Flying**: Fatigue and lack of recent flying hours contributed to several incidents, including one where a commercial fixed-wing aircraft landed without proper clearance from tower. [ACN 1751096] highlights this point.",
+      "enforced_text": "- **Incorrect Weather Reporting and Field Conditions**: Multiple incidents involving incorrect weather reporting led to runway excursions and other mishaps. For example, [ACN 1862644], where flight crews experienced rapid changes in weather conditions leading to a runway excursion.\n- **Communication Issues**: Communication problems between pilots and air traffic control resulted in runway incursions and other unsafe situations. The report [ACN 1863268] illustrates this issue clearly, where a pilot had difficulty communicating with the aircraft.\n- **Suboptimal Footwear**: In some cases, improper footwear affected the ability to maneuver the aircraft safely. [ACN 1868201] details how pilot's inability to effectively use rudder pedals due to sub-optimal footwear caused a runway excursion.\n- **Lack of Clear Runway Indicators**: Instances where runways were not properly marked or indicated before landing led to accidents. [ACN 1869711] describes a scenario where a small aircraft lost control after hitting a snow berm because the runway wasn't adequately cleared.\n- **Fatigue and Recent Flying**: Fatigue and lack of recent flying hours contributed to several incidents, including one where a commercial fixed-wing aircraft landed without proper clearance from tower. [ACN 1751096] highlights this point.",
+      "removed_statements": [],
+      "n_reports": 168
+    },
+    {
+      "filters": {
+        "phases": [
+          "takeoff"
+        ],
+        "labels": [
+          "procedure"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 9,
+      "n_valid_citations": 9,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.2314,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Loss of Directional Control**: Multiple incidents involving pilots losing control post-takeoff, often attributed to fuel imbalances or system alerts. [ACN 1881898], [ACN 1867521], [ACN 1861169]",
+          "n_citations": 3,
+          "n_valid": 3,
+          "support": 0.3846
+        },
+        {
+          "text": "**Unauthorized Activity on Runway**: Crews encountering unauthorized vehicles on runways before departures, leading to potential delays or conflicts. [ACN 1866852]",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.25
+        },
+        {
+          "text": "**ECAM Alerts During Takeoff**: Pilots experiencing ECAM alerts during takeoff, which led to deviations from standard procedures. [ACN 1867521], [ACN 1861169]",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2222
+        },
+        {
+          "text": "**Conflicting Procedures**: Inconsistent use of procedures between different models of aircraft, causing confusion and errors. [ACN 1810049]",
+          "n_citations": 1,
+          "n_valid": 1,
+          "support": 0.1
+        },
+        {
+          "text": "**Near Collisions and Missed Approaches**: Incidents where pilots made near collisions or missed approaches due to communication issues or incorrect frequencies. [ACN 1810049], [ACN 1862543]",
+          "n_citations": 2,
+          "n_valid": 2,
+          "support": 0.2
+        }
+      ],
+      "raw_text": "- **Loss of Directional Control**: Multiple incidents involving pilots losing control post-takeoff, often attributed to fuel imbalances or system alerts. [ACN 1881898], [ACN 1867521], [ACN 1861169]\n  \n- **Unauthorized Activity on Runway**: Crews encountering unauthorized vehicles on runways before departures, leading to potential delays or conflicts. [ACN 1866852]\n\n- **ECAM Alerts During Takeoff**: Pilots experiencing ECAM alerts during takeoff, which led to deviations from standard procedures. [ACN 1867521], [ACN 1861169]\n\n- **Conflicting Procedures**: Inconsistent use of procedures between different models of aircraft, causing confusion and errors. [ACN 1810049]\n\n- **Near Collisions and Missed Approaches**: Incidents where pilots made near collisions or missed approaches due to communication issues or incorrect frequencies. [ACN 1810049], [ACN 1862543]",
+      "enforced_text": "- **Loss of Directional Control**: Multiple incidents involving pilots losing control post-takeoff, often attributed to fuel imbalances or system alerts. [ACN 1881898], [ACN 1867521], [ACN 1861169]\n- **Unauthorized Activity on Runway**: Crews encountering unauthorized vehicles on runways before departures, leading to potential delays or conflicts. [ACN 1866852]\n- **ECAM Alerts During Takeoff**: Pilots experiencing ECAM alerts during takeoff, which led to deviations from standard procedures. [ACN 1867521], [ACN 1861169]\n- **Conflicting Procedures**: Inconsistent use of procedures between different models of aircraft, causing confusion and errors. [ACN 1810049]\n- **Near Collisions and Missed Approaches**: Incidents where pilots made near collisions or missed approaches due to communication issues or incorrect frequencies. [ACN 1810049], [ACN 1862543]",
+      "removed_statements": [],
+      "n_reports": 206
+    },
+    {
+      "filters": {
+        "labels": [
+          "fatigue"
+        ]
+      },
+      "n_statements": 5,
+      "n_citations": 35,
+      "n_valid_citations": 35,
+      "citation_precision": 1.0,
+      "statement_coverage": 1.0,
+      "mean_support": 0.4019,
+      "passed": true,
+      "invalid_citations": [],
+      "statements": [
+        {
+          "text": "**Fatigue** is consistently reported as a primary cause leading to operational errors and incidents across various aircraft types and scenarios. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.3846
+        },
+        {
+          "text": "Fatigue often manifests through symptoms such as disorientation, decreased alertness, and impaired judgment. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.125
+        },
+        {
+          "text": "Fatigue can lead to procedural deviations and missed checks, which may result in accidents or near-misses. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.4444
+        },
+        {
+          "text": "In some cases, fatigue has been linked to hostile communications between pilots and air traffic control. [ACN 1857234, 1800391, 1797710]",
+          "n_citations": 3,
+          "n_valid": 3,
+          "support": 0.5556
+        },
+        {
+          "text": "Long hours of duty, combined with inadequate rest periods, exacerbate the effects of fatigue. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+          "n_citations": 8,
+          "n_valid": 8,
+          "support": 0.5
+        }
+      ],
+      "raw_text": "- **Fatigue** is consistently reported as a primary cause leading to operational errors and incidents across various aircraft types and scenarios. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- Fatigue often manifests through symptoms such as disorientation, decreased alertness, and impaired judgment. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- Fatigue can lead to procedural deviations and missed checks, which may result in accidents or near-misses. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- In some cases, fatigue has been linked to hostile communications between pilots and air traffic control. [ACN 1857234, 1800391, 1797710]\n- Long hours of duty, combined with inadequate rest periods, exacerbate the effects of fatigue. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+      "enforced_text": "- **Fatigue** is consistently reported as a primary cause leading to operational errors and incidents across various aircraft types and scenarios. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- Fatigue often manifests through symptoms such as disorientation, decreased alertness, and impaired judgment. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- Fatigue can lead to procedural deviations and missed checks, which may result in accidents or near-misses. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]\n- In some cases, fatigue has been linked to hostile communications between pilots and air traffic control. [ACN 1857234, 1800391, 1797710]\n- Long hours of duty, combined with inadequate rest periods, exacerbate the effects of fatigue. [ACN 1869048, 1852677, 1854772, 1841634, 1822920, 1857234, 1800391, 1797710]",
+      "removed_statements": [],
+      "n_reports": 231
+    }
+  ],
+  "index": {
+    "embedder": "sentence-transformers/all-MiniLM-L6-v2",
+    "dim": 384,
+    "chunking": {
+      "max_words": 160,
+      "overlap_words": 40
+    },
+    "n_reports": 9068,
+    "n_chunks": 28359,
+    "embedding_seconds": 499.7,
+    "built_at": "2026-11-27T17:45:29"
+  }
+}
