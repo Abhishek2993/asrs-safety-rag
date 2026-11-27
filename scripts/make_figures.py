@@ -101,8 +101,8 @@ def fig_retrieval(out: Path) -> None:
         SERIES,
     )
     chance = proxy["chance"]["P@1"]
-    axes[0].axhline(chance, color=MUTED, ls="--", lw=1)
-    axes[0].text(2.45, chance + 0.015, f"chance {chance:.2f}", ha="right", fontsize=8, color=MUTED)
+    axes[0].axhline(chance, color=MUTED, ls="--", lw=1, label=f"Chance ({chance:.2f})")
+    axes[0].legend(loc="upper right", fontsize=8)
     axes[0].set_ylim(0, 1)
     axes[0].set_title(
         f"Proxy relevance: same primary problem\n"
@@ -202,14 +202,29 @@ def fig_trend(out: Path) -> None:
     stats = compute_statistics(sub)
     years = sorted(stats["counts_by_year"])
     share = [stats["label_by_year"][y]["weather"] / stats["counts_by_year"][y] for y in years]
-    fig, ax = plt.subplots(figsize=(6.5, 3))
+    last = idx.reports["date"].max()
+    partial = last.month < 12
+    fig, ax = plt.subplots(figsize=(7, 3.2))
     ax.plot(years, share, color=SERIES[0], lw=2, marker="o", ms=5)
-    ax.yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0))
+    ax.yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1.0, decimals=0))
     ax.yaxis.grid(True, color=GRID)
-    ax.set_ylim(0, max(share) * 1.3)
+    ax.set_ylim(0, max(share) * 1.2)
+    ticks = [
+        f"{y}{'*' if partial and y == last.year else ''}\nn={stats['counts_by_year'][y]}"
+        for y in years
+    ]
+    ax.set_xticks(years, ticks, fontsize=8)
     ax.set_title(f"Approach-phase reports coded 'weather', by year (n={len(sub):,} reports)")
-    for y, s, n in zip(years, share, [stats["counts_by_year"][y] for y in years], strict=True):
-        ax.text(y, s + max(share) * 0.04, f"n={n}", ha="center", fontsize=7, color=MUTED)
+    if partial:
+        ax.text(
+            1.0,
+            -0.3,
+            f"* {last.year} covers January-{last.strftime('%B')} only",
+            transform=ax.transAxes,
+            ha="right",
+            fontsize=8,
+            color=MUTED,
+        )
     fig.savefig(out / "trend_weather_approach.png")
     plt.close(fig)
 
