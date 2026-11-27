@@ -61,3 +61,7 @@ ignore = ["RUF001", "RUF002", "RUF003"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+filterwarnings = [
+    # synthetic test corpora leave some labels without positives
+    "ignore:Label not .* is present in all training examples:UserWarning",
+]
