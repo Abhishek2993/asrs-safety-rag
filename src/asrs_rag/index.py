@@ -152,6 +152,8 @@ class ReportIndex:
         self.bm25 = BM25(self.chunks["text"].tolist())
         self._acn_to_row = {acn: i for i, acn in enumerate(self.reports["acn"])}
         self.chunk_acns = self.chunks["acn"].to_numpy()
+        #: report row of every chunk, for O(n) report-mask -> chunk-mask conversion
+        self.chunk_rows = np.array([self._acn_to_row[a] for a in self.chunk_acns], dtype=np.int64)
 
     # ------------------------------------------------------------------ build
     @classmethod
@@ -224,8 +226,12 @@ class ReportIndex:
         """Whether ``acn`` is in the index."""
         return acn in self._acn_to_row
 
-    def chunk_mask(self, allowed_acns: set[str] | None) -> np.ndarray | None:
-        """Boolean mask over chunks for a set of allowed ACNs (None = all)."""
-        if allowed_acns is None:
+    def chunk_mask(self, report_mask: np.ndarray | None) -> np.ndarray | None:
+        """Boolean mask over chunks from a boolean mask over reports (None = all).
+
+        Indexing by each chunk's report row is O(n); ``np.isin`` on object
+        (string) arrays is far slower and dominated query time.
+        """
+        if report_mask is None:
             return None
-        return np.isin(self.chunk_acns, list(allowed_acns))
+        return np.asarray(report_mask, dtype=bool)[self.chunk_rows]

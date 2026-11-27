@@ -166,8 +166,7 @@ class HybridRetriever:
     def _allowed_chunks(self, filters: Filters | None) -> np.ndarray | None:
         if filters is None or filters.is_empty():
             return None
-        allowed = set(self.index.reports.loc[filters.mask(self.index.reports), "acn"])
-        return self.index.chunk_mask(allowed)
+        return self.index.chunk_mask(filters.mask(self.index.reports))
 
     def dense_search(self, query: str, n_chunks: int, chunk_mask: np.ndarray | None) -> list:
         """Top chunks by cosine similarity, collapsed to reports."""
