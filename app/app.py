@@ -169,7 +169,7 @@ def factor_chart(scores) -> alt.Chart:
                     ],
                     range=[BLUE, "#84b9f3", "#d0d0d0", "#e6e6e6"],
                 ),
-                legend=alt.Legend(orient="bottom", title=None),
+                legend=alt.Legend(orient="bottom", title=None, columns=1),
             ),
             tooltip=[
                 "factor",
@@ -188,7 +188,7 @@ def factor_chart(scores) -> alt.Chart:
             tooltip=[alt.Tooltip("threshold:Q", format=".2f")],
         )
     )
-    return (bars + ticks).properties(height=28 * len(df))
+    return (bars + ticks).properties(height=34 * len(df))
 
 
 def page_query(idx: ReportIndex, index_path: str, llm) -> None:
@@ -232,7 +232,7 @@ def page_query(idx: ReportIndex, index_path: str, llm) -> None:
         clf = load_classifier(index_path)
         text = clean_text(narrative)
         scores = scores_from_proba(clf.predict_proba([text]), clf.thresholds)[0]
-        st.altair_chart(factor_chart(scores), use_container_width=True)
+        st.altair_chart(factor_chart(scores), width="stretch", height=34 * len(LABELS) + 70)
         predicted = [s for s in scores if s.predicted]
         st.markdown(
             "**Supervised (TF-IDF + logistic regression):** "
@@ -293,7 +293,7 @@ def page_trends(idx: ReportIndex, llm) -> None:
             tooltip=["year", "reports"],
         )
         .properties(height=260),
-        use_container_width=True,
+        width="stretch",
     )
     shares = pd.DataFrame(
         {"factor": list(s.label_counts), "reports": list(s.label_counts.values())}
@@ -306,8 +306,8 @@ def page_trends(idx: ReportIndex, llm) -> None:
             x=alt.X("share:Q", axis=alt.Axis(format="%"), title=None),
             tooltip=["factor", "reports", alt.Tooltip("share:Q", format=".1%")],
         )
-        .properties(height=260),
-        use_container_width=True,
+        .properties(height=30 * len(LABELS)),
+        width="stretch",
     )
     lab = st.selectbox("Factor over time", LABELS, index=LABELS.index("weather"))
     by_year = pd.DataFrame(
@@ -325,7 +325,7 @@ def page_trends(idx: ReportIndex, llm) -> None:
             tooltip=["year", alt.Tooltip("share:Q", format=".1%")],
         )
         .properties(height=220),
-        use_container_width=True,
+        width="stretch",
     )
 
     st.subheader("Findings (every statement cites report IDs)")
@@ -349,7 +349,7 @@ def page_trends(idx: ReportIndex, llm) -> None:
                 ["acn", "date", "flight_phase", "aircraft_type", "labels", "synopsis"]
             ],
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
         )
 
 
